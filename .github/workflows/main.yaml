@@ -1,5 +1,6 @@
 #intsalled the unzip in VM 
 #try11
+#give the access to application regi
 name: Infrastructure Deploy workflow
 
 on: 
