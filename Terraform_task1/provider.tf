@@ -5,7 +5,7 @@ terraform {
       source  = "hashicorp/azurerm"
       version = ">=3.0.0"
     }
-  #experiments = [module_variable_optional_attrs]
+  experiments = [module_variable_optional_attrs]
   }
 
 backend "azurerm" {
