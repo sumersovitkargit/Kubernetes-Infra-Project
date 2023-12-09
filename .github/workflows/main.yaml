@@ -10,7 +10,7 @@ jobs:
   checkout:
     runs-on: self-hosted
     container:
-      image: ubuntu-latest
+      image: windows-2019
 
     steps:
       - name: Checkout Repository
