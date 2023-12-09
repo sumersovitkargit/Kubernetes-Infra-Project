@@ -1,1 +1,90 @@
+name: Infrastructure Deploy workflow
 
+on: 
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+  
+# run-name: Deploy
+jobs:
+  checkout:
+    runs-on: self-hosted
+    container:
+      image: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v1
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          submodules: true
+
+  # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+  env-setup:
+    needs: [checkout]
+    runs-on: self-hosted
+    steps:
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+  # Adding login creds
+  login:
+    needs: [checkout, env-setup]
+    runs-on: self-hosted
+    steps:
+      - name: Az login
+        run: |
+          az login --service-principal -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+          az account set --subscription ${{ secrets.SUBSCRIPTION_ID }}
+  # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+  terraform-init:
+    needs: [checkout, env-setup, login]
+    runs-on: self-hosted
+    env:
+       ARM_CLIENT_ID: "${{ secrets.CLIENT_ID }}"
+       ARM_SUBSCRIPTION_ID: "${{ secrets.SUBSCRIPTION_ID }}"
+       ARM_TENANT_ID: "${{ secrets.TENANT_ID }}"
+       ARM_CLIENT_SECRET: "${{ secrets.CLIENT_SECRET }}"
+    steps:
+      - name: Terraform Init
+        working-directory: ./Terraform_task1
+        run: terraform init
+
+  # Generates an execution plan for Terraform
+  terraform-plan:
+    needs: [checkout, env-setup, terraform-init]
+    runs-on: self-hosted
+    env:
+       ARM_CLIENT_ID: "${{ secrets.CLIENT_ID }}"
+       ARM_SUBSCRIPTION_ID: "${{ secrets.SUBSCRIPTION_ID }}"
+       ARM_TENANT_ID: "${{ secrets.TENANT_ID }}"
+       ARM_CLIENT_SECRET: "${{ secrets.CLIENT_SECRET }}"
+    steps:
+      - name: Terraform Plan
+        working-directory: ./Terraform_task1
+        run: |
+          terraform plan -input=false
+         
+  # On push to "main", build or change infrastructure according to Terraform configuration files
+  terraform-apply:
+     needs: [checkout, env-setup, terraform-init, terraform-plan]
+     runs-on: self-hosted
+     env:
+       ARM_CLIENT_ID: "${{ secrets.CLIENT_ID }}"
+       ARM_SUBSCRIPTION_ID: "${{ secrets.SUBSCRIPTION_ID }}"
+       ARM_TENANT_ID: "${{ secrets.TENANT_ID }}"
+       ARM_CLIENT_SECRET: "${{ secrets.CLIENT_SECRET }}"
+     steps:
+       - name: Terraform Apply
+         working-directory: ./Terraform_task1
+         run: terraform apply --input=false -auto-approve
+  post-cleanup:
+      needs: [checkout, env-setup, terraform-init, terraform-plan, terraform-apply]
+      runs-on: self-hosted
+      steps:
+        - name: CleanUp
+          working-directory: ./Terraform_task1
+          run: |
+            az logout
