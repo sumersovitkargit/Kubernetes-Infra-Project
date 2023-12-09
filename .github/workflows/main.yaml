@@ -64,18 +64,18 @@ jobs:
           terraform plan -input=false
          
   # On push to "main", build or change infrastructure according to Terraform configuration files
-  # terraform-apply:
-  #    needs: [checkout, env-setup, terraform-init, terraform-plan]
-  #    runs-on: self-hosted
-  #    env:
-  #      ARM_CLIENT_ID: "${{ secrets.CLIENT_ID }}"
-  #      ARM_SUBSCRIPTION_ID: "${{ secrets.SUBSCRIPTION_ID }}"
-  #      ARM_TENANT_ID: "${{ secrets.TENANT_ID }}"
-  #      ARM_CLIENT_SECRET: "${{ secrets.CLIENT_SECRET }}"
-  #    steps:
-  #      - name: Terraform Apply
-  #        working-directory: ./Terraform_task1
-  #        run: terraform apply --input=false -auto-approve
+  terraform-apply:
+     needs: [checkout, env-setup, terraform-init, terraform-plan]
+     runs-on: self-hosted
+     env:
+       ARM_CLIENT_ID: "${{ secrets.CLIENT_ID }}"
+       ARM_SUBSCRIPTION_ID: "${{ secrets.SUBSCRIPTION_ID }}"
+       ARM_TENANT_ID: "${{ secrets.TENANT_ID }}"
+       ARM_CLIENT_SECRET: "${{ secrets.CLIENT_SECRET }}"
+     steps:
+       - name: Terraform Apply
+         working-directory: ./Terraform_task1
+         run: terraform apply --input=false -auto-approve
   post-cleanup:
       needs: [checkout, env-setup, terraform-init, terraform-plan, terraform-apply]
       runs-on: self-hosted
