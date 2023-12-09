@@ -1,6 +1,8 @@
 #intsalled the unzip in VM 
 #try11
 #give the access to application regi
+#install the terraform in the runner
+
 name: Infrastructure Deploy workflow
 
 on: 
