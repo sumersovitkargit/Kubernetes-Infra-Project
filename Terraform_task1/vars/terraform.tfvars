@@ -33,7 +33,7 @@ max_node       = 2
 min_node       = 1
 #vm_family = "Standard_DS2_v2"
 userpool_details = [
-  { name = "userpool1", node_taint = ["pool=userpool001:NoSchedule"], node_label = ["app:mapupassesment"], userpool_min_node = 1, userpool_max_node = 1, vm_family = "Standard_E8as_v5" }
+  { name = "userpool1", node_taint = ["pool=userpool001:NoSchedule"], node_label = ["app:mapupassesment"], userpool_min_node = 1, userpool_max_node = 1, vm_family = "Standard_DS2_v2" }
   #{ name = "rmqpool", node_taint = ["pool=userpool001:NoSchedule"], node_label = ["app:rabbitmq"], userpool_min_node = 1, userpool_max_node = 1, vm_family = "Standard_DS13_v2" }
 ]
 
