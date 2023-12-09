@@ -1,0 +1,429 @@
+ # module.aks.azurerm_kubernetes_cluster.azure_kubernetes_cluster will be created
+  + resource "azurerm_kubernetes_cluster" "azure_kubernetes_cluster" {
+      + api_server_authorized_ip_ranges     = (known after apply)
+      + dns_prefix                          = "aks-jp-mapupassesment"
+      + fqdn                                = (known after apply)
+      + http_application_routing_zone_name  = (known after apply)
+      + id                                  = (known after apply)
+      + image_cleaner_enabled               = false
+      + image_cleaner_interval_hours        = 48
+      + kube_admin_config                   = (sensitive value)
+      + kube_admin_config_raw               = (sensitive value)
+      + kube_config                         = (sensitive value)
+      + kube_config_raw                     = (sensitive value)
+      + kubernetes_version                  = "1.26.6"
+      + location                            = "japaneast"
+      + name                                = "aks-jp-mapupassesment"
+      + node_resource_group                 = (known after apply)
+      + node_resource_group_id              = (known after apply)
+      + oidc_issuer_url                     = (known after apply)
+      + portal_fqdn                         = (known after apply)
+      + private_cluster_enabled             = false
+      + private_cluster_public_fqdn_enabled = false
+      + private_dns_zone_id                 = (known after apply)
+      + private_fqdn                        = (known after apply)
+      + public_network_access_enabled       = true
+      + resource_group_name                 = "rg-jp-mapupassesment"
+      + role_based_access_control_enabled   = true
+      + run_command_enabled                 = true
+      + sku_tier                            = "Free"
+      + support_plan                        = "KubernetesOfficial"
+      + tags                                = {
+          + "Environment Type" = "mapupassesment"
+          + "Region"           = "japaneast"
+          + "Resource Owner"   = "sumer"
+        }
+      + workload_identity_enabled           = false
+
+      + azure_active_directory_role_based_access_control {
+          + admin_group_object_ids = [
+              + "b6c0722a-361d-4b8a-b7f5-9e6ebf7d1235",
+            ]
+          + azure_rbac_enabled     = true
+          + managed                = true
+          + tenant_id              = (known after apply)
+        }
+
+      + default_node_pool {
+          + enable_auto_scaling  = true
+          + kubelet_disk_type    = (known after apply)
+          + max_count            = 2
+          + max_pods             = (known after apply)
+          + min_count            = 1
+          + name                 = "systempool"
+          + node_count           = (known after apply)
+          + node_labels          = (known after apply)
+          + orchestrator_version = (known after apply)
+          + os_disk_size_gb      = (known after apply)
+          + os_disk_type         = "Managed"
+          + os_sku               = (known after apply)
+          + scale_down_mode      = "Delete"
+          + type                 = "VirtualMachineScaleSets"
+          + ultra_ssd_enabled    = false
+          + vm_size              = "Standard_DS2_v2"
+          + vnet_subnet_id       = (known after apply)
+          + workload_runtime     = (known after apply)
+        }
+
+      + identity {
+          + principal_id = (known after apply)
+          + tenant_id    = (known after apply)
+          + type         = "SystemAssigned"
+        }
+
+      + key_vault_secrets_provider {
+          + secret_identity          = (known after apply)
+          + secret_rotation_enabled  = true
+          + secret_rotation_interval = "2m"
+        }
+
+      + network_profile {
+          + dns_service_ip     = "10.15.0.10"
+          + docker_bridge_cidr = (known after apply)
+          + ip_versions        = (known after apply)
+          + load_balancer_sku  = "standard"
+          + network_mode       = (known after apply)
+          + network_plugin     = "azure"
+          + network_policy     = (known after apply)
+          + outbound_type      = "loadBalancer"
+          + pod_cidr           = (known after apply)
+          + pod_cidrs          = (known after apply)
+          + service_cidr       = "10.15.0.0/16"
+          + service_cidrs      = (known after apply)
+        }
+    }
+
+  # module.aks.azurerm_kubernetes_cluster_node_pool.usernodepool["userpool1"] will be created
+  + resource "azurerm_kubernetes_cluster_node_pool" "usernodepool" {
+      + enable_auto_scaling   = true
+      + id                    = (known after apply)
+      + kubelet_disk_type     = (known after apply)
+      + kubernetes_cluster_id = (known after apply)
+      + max_count             = 1
+      + max_pods              = (known after apply)
+      + min_count             = 1
+      + mode                  = "User"
+      + name                  = "userpool1"
+      + node_count            = 2
+      + node_labels           = {
+          + "env"     = "mapupassesment"
+          + "service" = "kubernetes"
+        }
+      + node_taints           = [
+          + "pool=userpool001:NoSchedule",
+        ]
+      + orchestrator_version  = "1.26.6"
+      + os_disk_size_gb       = (known after apply)
+      + os_disk_type          = "Managed"
+      + os_sku                = (known after apply)
+      + os_type               = "Linux"
+      + priority              = "Regular"
+      + scale_down_mode       = "Delete"
+      + spot_max_price        = -1
+      + tags                  = {
+          + "env" = "mapupassesment"
+        }
+      + ultra_ssd_enabled     = false
+      + vm_size               = "Standard_E8as_v5"
+      + vnet_subnet_id        = (known after apply)
+      + zones                 = [
+          + "1",
+          + "3",
+        ]
+    }
+
+  # module.azurecontainerregistry.azurerm_container_registry.container_registry will be created
+  + resource "azurerm_container_registry" "container_registry" {
+      + admin_enabled                 = true
+      + admin_password                = (sensitive value)
+      + admin_username                = (known after apply)
+      + encryption                    = (known after apply)
+      + export_policy_enabled         = true
+      + id                            = (known after apply)
+      + location                      = "japaneast"
+      + login_server                  = (known after apply)
+      + name                          = "mapupjpmapupassesment"
+      + network_rule_bypass_option    = "AzureServices"
+      + network_rule_set              = (known after apply)
+      + public_network_access_enabled = true
+      + resource_group_name           = "rg-jp-mapupassesment"
+      + retention_policy              = (known after apply)
+      + sku                           = "Basic"
+      + trust_policy                  = (known after apply)
+      + zone_redundancy_enabled       = false
+    }
+
+  # module.resourcegroup.azurerm_resource_group.main_rg will be created
+  + resource "azurerm_resource_group" "main_rg" {
+      + id       = (known after apply)
+      + location = "japaneast"
+      + name     = "rg-jp-mapupassesment"
+      + tags     = {
+          + "Environment Type" = "mapupassesment"
+          + "Region"           = "japaneast"
+          + "Resource Owner"   = "sumer"
+        }
+    }
+
+  # module.storageaccount.azurerm_storage_account.storageac will be created
+  + resource "azurerm_storage_account" "storageac" {
+      + access_tier                        = (known after apply)
+      + account_kind                       = "StorageV2"
+      + account_replication_type           = "GRS"
+      + account_tier                       = "Standard"
+      + allow_nested_items_to_be_public    = true
+      + cross_tenant_replication_enabled   = true
+      + default_to_oauth_authentication    = false
+      + enable_https_traffic_only          = true
+      + id                                 = (known after apply)
+      + infrastructure_encryption_enabled  = false
+      + is_hns_enabled                     = false
+      + large_file_share_enabled           = (known after apply)
+      + location                           = "japaneast"
+      + min_tls_version                    = "TLS1_2"
+      + name                               = "mapjpmapupassesmentv1"
+      + nfsv3_enabled                      = false
+      + primary_access_key                 = (sensitive value)
+      + primary_blob_connection_string     = (sensitive value)
+      + primary_blob_endpoint              = (known after apply)
+      + primary_blob_host                  = (known after apply)
+      + primary_blob_internet_endpoint     = (known after apply)
+      + primary_blob_internet_host         = (known after apply)
+      + primary_blob_microsoft_endpoint    = (known after apply)
+      + primary_blob_microsoft_host        = (known after apply)
+      + primary_connection_string          = (sensitive value)
+      + primary_dfs_endpoint               = (known after apply)
+      + primary_dfs_host                   = (known after apply)
+      + primary_dfs_internet_endpoint      = (known after apply)
+      + primary_dfs_internet_host          = (known after apply)
+      + primary_dfs_microsoft_endpoint     = (known after apply)
+      + primary_dfs_microsoft_host         = (known after apply)
+      + primary_file_endpoint              = (known after apply)
+      + primary_file_host                  = (known after apply)
+      + primary_file_internet_endpoint     = (known after apply)
+      + primary_file_internet_host         = (known after apply)
+      + primary_file_microsoft_endpoint    = (known after apply)
+      + primary_file_microsoft_host        = (known after apply)
+      + primary_location                   = (known after apply)
+      + primary_queue_endpoint             = (known after apply)
+      + primary_queue_host                 = (known after apply)
+      + primary_queue_microsoft_endpoint   = (known after apply)
+      + primary_queue_microsoft_host       = (known after apply)
+      + primary_table_endpoint             = (known after apply)
+      + primary_table_host                 = (known after apply)
+      + primary_table_microsoft_endpoint   = (known after apply)
+      + primary_table_microsoft_host       = (known after apply)
+      + primary_web_endpoint               = (known after apply)
+      + primary_web_host                   = (known after apply)
+      + primary_web_internet_endpoint      = (known after apply)
+      + primary_web_internet_host          = (known after apply)
+      + primary_web_microsoft_endpoint     = (known after apply)
+      + primary_web_microsoft_host         = (known after apply)
+      + public_network_access_enabled      = true
+      + queue_encryption_key_type          = "Service"
+      + resource_group_name                = "rg-jp-mapupassesment"
+      + secondary_access_key               = (sensitive value)
+      + secondary_blob_connection_string   = (sensitive value)
+      + secondary_blob_endpoint            = (known after apply)
+      + secondary_blob_host                = (known after apply)
+      + secondary_blob_internet_endpoint   = (known after apply)
+      + secondary_blob_internet_host       = (known after apply)
+      + secondary_blob_microsoft_endpoint  = (known after apply)
+      + secondary_blob_microsoft_host      = (known after apply)
+      + secondary_connection_string        = (sensitive value)
+      + secondary_dfs_endpoint             = (known after apply)
+      + secondary_dfs_host                 = (known after apply)
+      + secondary_dfs_internet_endpoint    = (known after apply)
+      + secondary_dfs_internet_host        = (known after apply)
+      + secondary_dfs_microsoft_endpoint   = (known after apply)
+      + secondary_dfs_microsoft_host       = (known after apply)
+      + secondary_file_endpoint            = (known after apply)
+      + secondary_file_host                = (known after apply)
+      + secondary_file_internet_endpoint   = (known after apply)
+      + secondary_file_internet_host       = (known after apply)
+      + secondary_file_microsoft_endpoint  = (known after apply)
+      + secondary_file_microsoft_host      = (known after apply)
+      + secondary_location                 = (known after apply)
+      + secondary_queue_endpoint           = (known after apply)
+      + secondary_queue_host               = (known after apply)
+      + secondary_queue_microsoft_endpoint = (known after apply)
+      + secondary_queue_microsoft_host     = (known after apply)
+      + secondary_table_endpoint           = (known after apply)
+      + secondary_table_host               = (known after apply)
+      + secondary_table_microsoft_endpoint = (known after apply)
+      + secondary_table_microsoft_host     = (known after apply)
+      + secondary_web_endpoint             = (known after apply)
+      + secondary_web_host                 = (known after apply)
+      + secondary_web_internet_endpoint    = (known after apply)
+      + secondary_web_internet_host        = (known after apply)
+      + secondary_web_microsoft_endpoint   = (known after apply)
+      + secondary_web_microsoft_host       = (known after apply)
+      + sftp_enabled                       = false
+      + shared_access_key_enabled          = true
+      + table_encryption_key_type          = "Service"
+    }
+
+  # module.virtualmachine.azurerm_managed_disk.managed_disk will be created
+  + resource "azurerm_managed_disk" "managed_disk" {
+      + create_option                     = "Empty"
+      + disk_iops_read_only               = (known after apply)
+      + disk_iops_read_write              = (known after apply)
+      + disk_mbps_read_only               = (known after apply)
+      + disk_mbps_read_write              = (known after apply)
+      + disk_size_gb                      = 256
+      + id                                = (known after apply)
+      + location                          = "japaneast"
+      + logical_sector_size               = (known after apply)
+      + max_shares                        = (known after apply)
+      + name                              = "disk-jp-mapupassesment"
+      + optimized_frequent_attach_enabled = false
+      + performance_plus_enabled          = false
+      + public_network_access_enabled     = true
+      + resource_group_name               = "rg-jp-mapupassesment"
+      + source_uri                        = (known after apply)
+      + storage_account_type              = "StandardSSD_LRS"
+      + tier                              = (known after apply)
+    }
+
+  # module.virtualmachine.azurerm_network_interface.ani will be created
+  + resource "azurerm_network_interface" "ani" {
+      + applied_dns_servers           = (known after apply)
+      + dns_servers                   = (known after apply)
+      + enable_accelerated_networking = false
+      + enable_ip_forwarding          = false
+      + id                            = (known after apply)
+      + internal_dns_name_label       = (known after apply)
+      + internal_domain_name_suffix   = (known after apply)
+      + location                      = "japaneast"
+      + mac_address                   = (known after apply)
+      + name                          = "nic-jp-mapupassesment"
+      + private_ip_address            = (known after apply)
+      + private_ip_addresses          = (known after apply)
+      + resource_group_name           = "rg-jp-mapupassesment"
+      + virtual_machine_id            = (known after apply)
+
+      + ip_configuration {
+          + gateway_load_balancer_frontend_ip_configuration_id = (known after apply)
+          + name                                               = "vm1_ip01"
+          + primary                                            = (known after apply)
+          + private_ip_address                                 = (known after apply)
+          + private_ip_address_allocation                      = "Dynamic"
+          + private_ip_address_version                         = "IPv4"
+          + subnet_id                                          = (known after apply)
+        }
+    }
+
+  # module.virtualmachine.azurerm_virtual_machine.virtual_machine will be created
+  + resource "azurerm_virtual_machine" "virtual_machine" {
+      + availability_set_id              = (known after apply)
+      + delete_data_disks_on_termination = false
+      + delete_os_disk_on_termination    = false
+      + id                               = (known after apply)
+      + license_type                     = (known after apply)
+      + location                         = "japaneast"
+      + name                             = "vm-jp-mapupassesment"
+      + network_interface_ids            = (known after apply)
+      + resource_group_name              = "rg-jp-mapupassesment"
+      + tags                             = {
+          + "Purpose"     = "Github Runner VM"
+          + "environment" = "Common Platform"
+        }
+      + vm_size                          = "Standard_DS2_v2"
+
+      + boot_diagnostics {
+          + enabled = true
+        }
+
+      + os_profile {
+          # At least one attribute in this block is (or was) sensitive,
+          # so its contents will not be displayed.
+        }
+
+      + os_profile_linux_config {
+          + disable_password_authentication = false
+        }
+
+      + storage_image_reference {
+          + offer     = "CentOS"
+          + publisher = "OpenLogic"
+          + sku       = "7.7"
+          + version   = "latest"
+        }
+
+      + storage_os_disk {
+          + caching                   = "ReadWrite"
+          + create_option             = "FromImage"
+          + disk_size_gb              = (known after apply)
+          + managed_disk_id           = (known after apply)
+          + managed_disk_type         = "StandardSSD_LRS"
+          + name                      = "osdisk-jp-mapupassesment"
+          + os_type                   = (known after apply)
+          + write_accelerator_enabled = false
+        }
+    }
+
+  # module.virtualmachine.azurerm_virtual_machine_data_disk_attachment.machine_data_disk_attachment will be created
+  + resource "azurerm_virtual_machine_data_disk_attachment" "machine_data_disk_attachment" {
+      + caching                   = "ReadWrite"
+      + create_option             = "Attach"
+      + id                        = (known after apply)
+      + lun                       = 10
+      + managed_disk_id           = (known after apply)
+      + virtual_machine_id        = (known after apply)
+      + write_accelerator_enabled = false
+    }
+
+  # module.virtualnetwork.azurerm_subnet.subnets["aks_subnet"] will be created
+  + resource "azurerm_subnet" "subnets" {
+      + address_prefixes                               = [
+          + "10.14.0.0/20",
+        ]
+      + enforce_private_link_endpoint_network_policies = (known after apply)
+      + enforce_private_link_service_network_policies  = (known after apply)
+      + id                                             = (known after apply)
+      + name                                           = "aks_subnet"
+      + private_endpoint_network_policies_enabled      = (known after apply)
+      + private_link_service_network_policies_enabled  = (known after apply)
+      + resource_group_name                            = "rg-jp-mapupassesment"
+      + service_endpoints                              = [
+          + "Microsoft.Storage",
+        ]
+      + virtual_network_name                           = "vnet-jp-mapupassesment"
+    }
+
+  # module.virtualnetwork.azurerm_subnet.subnets["vm_subnet"] will be created
+  + resource "azurerm_subnet" "subnets" {
+      + address_prefixes                               = [
+          + "10.14.20.0/26",
+        ]
+      + enforce_private_link_endpoint_network_policies = (known after apply)
+      + enforce_private_link_service_network_policies  = (known after apply)
+      + id                                             = (known after apply)
+      + name                                           = "vm_subnet"
+      + private_endpoint_network_policies_enabled      = (known after apply)
+      + private_link_service_network_policies_enabled  = (known after apply)
+      + resource_group_name                            = "rg-jp-mapupassesment"
+      + service_endpoints                              = [
+          + "Microsoft.Storage",
+        ]
+      + virtual_network_name                           = "vnet-jp-mapupassesment"
+    }
+
+  # module.virtualnetwork.azurerm_virtual_network.virtual_network will be created
+  + resource "azurerm_virtual_network" "virtual_network" {
+      + address_space       = [
+          + "10.14.0.0/16",
+        ]
+      + dns_servers         = (known after apply)
+      + guid                = (known after apply)
+      + id                  = (known after apply)
+      + location            = "japaneast"
+      + name                = "vnet-jp-mapupassesment"
+      + resource_group_name = "rg-jp-mapupassesment"
+      + subnet              = (known after apply)
+      + tags                = {
+          + "Environment Type" = "mapupassesment"
+          + "Region"           = "japaneast"
+          + "Resource Owner"   = "sumer"
+        }
+    }
