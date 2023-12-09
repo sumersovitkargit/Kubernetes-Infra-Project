@@ -2,7 +2,7 @@ name: Infrastructure Deploy workflow
 
 on: 
   push:
-    branches: [ "main" ]
+    branches: [ "task1_terraform" ]
   workflow_dispatch:
   
 # run-name: Deploy
