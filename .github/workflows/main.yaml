@@ -51,7 +51,7 @@ jobs:
     steps:
       - name: Terraform Init
         working-directory: ./Terraform_task1
-        run: terraform init
+        run: terraform init -backend-config="storage_account_name=tfstatestjpmapup" -backend-config="container_name=tfstatefile" -backend-config="key=mapUp_Assesment.terraform.tfstate"
 
   # Generates an execution plan for Terraform
   terraform-plan:
