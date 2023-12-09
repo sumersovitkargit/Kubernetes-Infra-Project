@@ -9,12 +9,8 @@ on:
 jobs:
   checkout:
     runs-on: self-hosted
-    container:
-      image: mcr.microsoft.com/windows/servercore:ltsc2019
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v1
         with:
           token: ${{ secrets.PAT_TOKEN }}
           submodules: true
