@@ -29,7 +29,7 @@ Note: Creating This project on the Azure infrastructure as I have all experience
 - Created the load balancer Kubernetes Service
     ![Alt text](Images/svc.PNG)
 
-   <small>(Note : The Pods are not getting ready due to back-off restarting, As per the logs checked Images is successfully fetching from the ACR. I suspect the issue with docker image)
+   <small>(Note : The Pods are not getting ready due to back-off restarting, As per the logs checked Images is successfully fetching from the ACR. Cheking the issue)
 
 ## Task 4: Load Balancing and Scalability
 - While deploying the cluster , The Public Load balancer is deployed. AKS cluster is access via this LB
