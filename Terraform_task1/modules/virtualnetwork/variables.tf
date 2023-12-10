@@ -1,5 +1,5 @@
 terraform {
-  experiments = [variable_validation]
+  experiments = [module_variable_optional_attrs]
 }
 
 variable "address_space" {
