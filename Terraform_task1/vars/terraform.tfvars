@@ -5,7 +5,6 @@ region = "jp"
 azure_region = "japaneast"
 env = "mapupassesment"
 tenant_id = "ab968060-1bea-4e12-ba68-c8579dd00e75"
-resource Owner = "sumer"
 
 # tags
 
