@@ -14,10 +14,10 @@ variable "env" {
 }
 
 # Common variables needed for Azure tags
-variable "resource_owner" {
-  description = "Business unit name"
-  type = string
-}
+#variable "resource_owner" {
+#  description = "Business unit name"
+#  type = string
+#}
 
 # variable "team" {
 #   description = "Cost center"
