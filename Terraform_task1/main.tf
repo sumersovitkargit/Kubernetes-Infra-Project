@@ -29,7 +29,7 @@ provider "azurerm" {
 locals {
   tags = {
     "Environment Type" = var.env
-    "Resource Owner" = 'sumer'
+    "Resource Owner" = "sumer"
     #"Team" = var.team
 
     "Region"      = var.azure_region
