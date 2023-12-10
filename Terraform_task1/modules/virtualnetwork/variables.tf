@@ -1,3 +1,7 @@
+terraform {
+  experiments = [variable_validation]
+}
+
 variable "address_space" {
   type        = list(string)
   description = "The address space that is used in the virtual network"
