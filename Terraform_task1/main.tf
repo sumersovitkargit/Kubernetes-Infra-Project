@@ -17,9 +17,9 @@ backend "azurerm" {
   key                  = "mapUp_Assesment.terraform.tfstate"
   }
 }
-terraform {
-  experiments = [module_variable_optional_attrs]
-}
+#terraform {
+#  experiments = [module_variable_optional_attrs]
+#}
 provider "azurerm" {
     features{}
     #subscription_id = ""
