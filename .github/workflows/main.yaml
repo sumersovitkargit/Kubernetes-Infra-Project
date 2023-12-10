@@ -66,7 +66,7 @@ jobs:
       - name: Terraform Plan
         working-directory: ./Terraform_task1
         run: |
-          terraform plan -input=false
+          terraform plan --var-file=./vars/terraform.tfvars
          
   # On push to "main", build or change infrastructure according to Terraform configuration files
   terraform-apply:
@@ -80,7 +80,7 @@ jobs:
      steps:
        - name: Terraform Apply
          working-directory: ./Terraform_task1
-         run: terraform apply --input=false -auto-approve
+         run: terraform apply --input=false -auto-approve --var-file=./vars/terraform.tfvars
   post-cleanup:
       needs: [checkout, env-setup, terraform-init, terraform-plan, terraform-apply]
       runs-on: self-hosted
