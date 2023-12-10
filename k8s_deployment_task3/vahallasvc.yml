@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: valhallaservice
+  labels:
+    app: valhalla
+    tier: valhalla
+spec:
+  type: LoadBalancer
+  selector:
+    app: valhalla
+  ports:
+  - port: 80
+    targetPort: 8002
