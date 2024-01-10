@@ -1,8 +1,5 @@
-# MapUp_Assessment
-Task : Set up a Valhalla server on Azure using Docker, Kubernetes, and Terraform. The setup should be scalable, include load balancers, and be accessible for routing requests
-
-Note: Creating This project on the Azure infrastructure as I have all experience in Azure Only
-
+# Infra kubernetes Project
+Task : Set up a nginx webpage server on Azure using Docker, Kubernetes, and Terraform. The setup should be scalable, include load balancers, and be accessible for routing requests
 
 ## Task 1: Azure Setup using Terraform
 - Created modules of AKS Cluster , ACR , and Virtual Network and Virtual machine (For Github Action Runner)
