@@ -24,7 +24,7 @@ Task : Set up a nginx webpage server on Azure using Docker, Kubernetes, and Terr
 - Created the load balancer Kubernetes Service
     ![Alt text](Images/svc.PNG)
 
-   <small>(Note : The Pods are not getting ready due to back-off restarting, As per the logs checked Images is successfully fetching from the ACR. Cheking the issue)
+  
 
 ## Task 4: Load Balancing and Scalability
 - While deploying the cluster , The Public Load balancer is deployed. AKS cluster is access via this LB
