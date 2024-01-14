@@ -14,8 +14,6 @@ Task : Set up a nginx webpage server on Azure using Docker, Kubernetes, and Terr
 
    ![Alt text](Images/ACR.PNG)
 
-- <small>(Note: While creating the Dockerfile facing the problem in docker desktop , Hence I have used the read made Docker image from https://hub.docker.com/r/reinventinggeospatial/valhalla and stored it to the container Registry)
-
 
 ## Task 3: Kubernetes Deployment
 - AKS cluster is deployed with systempool and one userpool
