@@ -1,3 +1,5 @@
+
+
 resource "azurerm_kubernetes_cluster" "azure_kubernetes_cluster" {
   name                = "aks-${var.region}-${var.env}"
   kubernetes_version  = "1.26.6"
